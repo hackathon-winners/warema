@@ -115,21 +115,29 @@ def meeting_switch_to(meeting_type):
 @app.route('/starwars', methods=['GET'])
 def starwars():
     warema.set_tilt(0)
-    warema.up(4)
-    time.sleep(.1)
+    time.sleep(2)
+
+    warema.set_tilt(.990)
+    warema.set_tilt(-.990)
+    warema.set_tilt(.990)
+    warema.set_tilt(-.710)
+    warema.set_tilt(.220)
+    warema.set_tilt(-990)
+    warema.set_tilt(.710)
+    warema.set_tilt(-220)
+    warema.set_tilt(470)
+
+    time.sleep(1.520)
 
     warema.set_tilt(1)
-    warema.set_tilt(-1)
-    warema.set_tilt(1)
-    warema.set_tilt(-.71)
-    warema.set_tilt(.28)
-    warema.set_tilt(1)
-    warema.set_tilt(-.71)
-    warema.set_tilt(5)
-
-
-
-    time.sleep(.5)
+    warema.set_tilt(-.990)
+    warema.set_tilt(.990)
+    warema.set_tilt(-.710)
+    warema.set_tilt(.220)
+    warema.set_tilt(-990)
+    warema.set_tilt(.710)
+    warema.set_tilt(-220)
+    warema.set_tilt(470)
 
     # warema.set_tilt(-.5)
     # warema.set_tilt(.5)
