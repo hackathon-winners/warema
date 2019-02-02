@@ -6,11 +6,10 @@
     grid-column-gap: 18px;
     grid-row-gap: 18px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: min-content auto;
     grid-template-areas:
         "title title"
-        "main info"
-        "main trends";
+        "main side";
 
     @each $div in "main", "title", "info", "trends" {
         .#{$div} {
@@ -18,10 +17,10 @@
         }
     }
     .indexStat {
-        width: 80%;
+        width: 100%;
         text-align:center;
         p {
-            font-size: 18px;
+            font-size: 22px;
         }
     }    
     .iconStat {
