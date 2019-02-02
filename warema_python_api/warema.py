@@ -22,7 +22,7 @@ class WaremaBlind():
 
     def tilt_open( value ): # tilt from 100 to 0
         automationhat.relay.one.on()
-        time.sleep(seconds)
+        time.sleep(1)
         automationhat.relay.one.off()
 
     def tilt_close(vale):  # tilt from 100 to 0
