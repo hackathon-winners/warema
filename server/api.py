@@ -130,7 +130,7 @@ def starwars():
     time.sleep(.250)
     warema.set_tilt(-.250)
     warema.set_tilt(.500)
-    time.sleep(500)
+    time.sleep(.500)
 
     warema.set_tilt(.250)
     time.sleep(.250)
@@ -144,7 +144,7 @@ def starwars():
     time.sleep(.250)
     warema.set_tilt(-.250)
     warema.set_tilt(.500)
-    time.sleep(500)
+    time.sleep(.500)
 
     warema.set_tilt(.250)
     time.sleep(.250)
@@ -158,7 +158,7 @@ def starwars():
     time.sleep(.250)
     warema.set_tilt(-.250)
     warema.set_tilt(.500)
-    time.sleep(500)
+    time.sleep(.500)
 
 
 
