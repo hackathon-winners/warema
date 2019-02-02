@@ -1,4 +1,4 @@
-@import "../../fontimport";
+@import "../../variables";
 
 .ProductivityStats {
     display: grid;
@@ -20,15 +20,13 @@
     .indexStat {
         width: 80%;
         text-align:center;
-        .label {
-            font-size: 96px;
-            font-weight: 900;
-        }
         p {
             font-size: 18px;
         }
     }    
     .iconStat {
+        display:flex;
+        align-items: center;
         h4 {
             margin:0;
             font-size: 18px;
@@ -38,11 +36,15 @@
             margin:0;
             font-size: 32px;
             font-weight: 900;
+            color: white;
+            letter-spacing: .05em;
         }
-        &:before {
-            content:"\f508";
-            font-family: FontAwesome;
+        img {
+            width:80px;
+            margin-right: 20px;
+            margin-top:-10px;
         }
+        
     }
 
 }

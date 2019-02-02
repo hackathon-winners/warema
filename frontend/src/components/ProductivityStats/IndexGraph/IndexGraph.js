@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import styles from "./IndexGraph.module.scss";
 import { Doughnut } from "react-chartjs-2";
 
-export default function() {
+export default function({index}) {
+    var indexPercentage = index*10;
     const options = {
         animation: false,
         legend: {
@@ -10,24 +12,21 @@ export default function() {
          tooltips: {
             enabled: false
          },
-        rotation: Math.PI,
-        circumference: Math.PI,
-        cutoutPercentage: 85,
+        rotation: -1.1 * Math.PI,
+        circumference: Math.PI * 1.2,
+        cutoutPercentage: 80,
     }
     
     const [data, setData] = useState({
         datasets: [{
             data: [
-                37.1,
-                100-37.1
+                indexPercentage,
+                100-indexPercentage
             ],
             borderColor : 'transparent',
             backgroundColor: [
-            "red",
-            "orange",
-            "yellow",
-            "green",
-            "blue",
+            "#3F93C6",
+            "#122F41",
             ],
             label: 'Dataset 1'
         }],
@@ -39,5 +38,10 @@ export default function() {
             'Blue'
         ]
     });
-    return <Doughnut data={data} options={options} />;
+    return (
+        <div className={styles.IndexGraph}>
+            <Doughnut data={data} options={options} />
+            <div className={styles.label}>{index}</div>
+        </div>
+    );
 }
