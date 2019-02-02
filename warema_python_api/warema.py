@@ -7,11 +7,10 @@ class WaremaBlind():
         (Local operation: time mode)
     """
 
-    def __init__(self):
-        self.position = 100  # close
-        self.direnction = 1  # close
-        self.tilt = 1        # close
-        self.down(36)
+    # def __init__(self):
+    #     self.position = 100  # bottom
+    #     self.tilt = 0        # close
+    #     self.down(36)
 
     def init(self):
         self.position = 100
@@ -20,20 +19,40 @@ class WaremaBlind():
     def status(self):
         return self.position
 
-    def tilt_open(self, value ): # tilt from 100 to 0
-        automationhat.relay.one.on()
-        time.sleep(1)
-        automationhat.relay.one.off()
 
-    def tilt_close(self, value):  # tilt from 100 to 0
-        remaining = 100 - self.tilt
-        if value > remaining:
-            value = remaining
-        self.tilt = value
-        seconds = value / 100
-        automationhat.relay.two.on()
-        time.sleep(seconds)
-        automationhat.relay.two.off()
+    def tilt(self, value): # 0 is close one is open
+        relay = automationhat.relay.one
+        if value > 0
+            relay = automationhat.relay.two
+        self.tilt = self.tilt + value
+        if self.tilt > 1:
+            self.tilt = 1
+        if self.tilt < 0:
+            self.tilt = 0
+
+        relay.on()
+        time.sleep(value)
+        relay.one.off()
+
+
+    # def tilt_open(self, value ): # tilt from 100 to 0
+    #     automationhat.relay.one.on()
+    #     time.sleep(1)
+    #     automationhat.relay.one.off()
+
+    # def tilt_close(self, value: float):  # tilt from 1 to 0
+    #     remaining = 1 - self.tilt #
+    #     if value > remaining:
+    #         value = remaining
+    #     self.tilt = value
+    #     seconds = value / 100
+    #     automationhat.relay.two.on()
+    #     time.sleep(seconds)
+    #     automationhat.relay.two.off()
+
+
+
+
 
 
     def up(self, seconds: float):
@@ -42,9 +61,6 @@ class WaremaBlind():
         Args:
             seconds (float): Seconds to move.
         """
-
-
-        self.tilt_close(30)
 
         self.position  = self.position - 10
         automationhat.relay.one.on()
@@ -68,9 +84,6 @@ class WaremaBlind():
         Args:
             seconds (float): Seconds to move.
         """
-
-        self.tilt_open(30)
-
         automationhat.relay.two.on()
         print("going down")
         time.sleep(seconds)

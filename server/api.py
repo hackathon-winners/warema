@@ -79,14 +79,10 @@ def blind_down_by(amount):
 @app.route('/blinds/meeting/start', methods=['GET'])
 def meeting_start():
 
-    status = warema.status()
-    remaining = 100 - status
-    seconds =  ( remaining * 100 ) / 36
-
-
     # warema.down( seconds )
+    # formal meeting cfirst close then starts half, formal metting tilt completly then is over
 
-    warema.up(1)
+    warema.tilt(.5)
 
     return  str(seconds) + ' MEETING START '+ str(status)
 
