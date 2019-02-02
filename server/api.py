@@ -70,7 +70,7 @@ def blind_down_by(amount):
 
 @app.route('/blinds/tilt/<float:amount>', methods=['GET'])
 def blind_tilt(amount):
-    warema.tilt(amount)
+    warema.set_tilt(amount)
     return 'titl '
 
 # @app.route('/blinds/stop', methods=['GET'])
