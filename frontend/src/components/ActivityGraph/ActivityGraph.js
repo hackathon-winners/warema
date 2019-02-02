@@ -15,7 +15,7 @@ export default function({ score }) {
     },
     scales:{
       scaleLabel: [{
-        fontColor: 'white',
+        fontColor: '#8DD4FF',
       }],
       yAxes: [{
           display: false //this will remove all the x-axis grid lines
@@ -32,9 +32,9 @@ export default function({ score }) {
     labels: [],
     datasets: [{ data: [], 
       label: "Activity Monitor",
-      borderColor : '#3F93C6',
+      borderColor : '#8DD4FF',
       backgroundColor: [
-      "rgba(18, 47, 65, .5)"
+      "rgba(18, 47, 65, .8)"
       ], }],
     
   });

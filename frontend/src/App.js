@@ -15,6 +15,7 @@ export default function() {
   const [score, setScore] = useState(0);
   const [scoreLog, setScoreLog] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [activityIndex, setActivityIndex] = useState(0);
 
   // connect the webcam with the video element
   useEffect(() => {
@@ -54,17 +55,27 @@ export default function() {
     if (overallScore <= 4000) {
       if (currentState !== "quiet") {
         setCurrentState("quiet");
+        setActivityIndex(parseFloat(1 + Math.random()).toFixed(2));
       }
     }
     if (overallScore > 4000 && overallScore <= 7000) {
       if (currentState !== "normal") {
         setCurrentState("normal");
+        setActivityIndex(parseFloat(5 + Math.random(),).toFixed(2));
       }
     }
-    if (overallScore > 9000) {
+    if (overallScore > 20000) {
       if (currentState !== "active") {
         setCurrentState("active");
+        setActivityIndex(parseFloat(8 + Math.random(),).toFixed(2));
       }
+    }
+    // activity index steps
+    if (overallScore <= 50000) {
+        setActivityIndex(parseFloat(overallScore/4000).toFixed(2));
+    }
+    if (overallScore > 50000) {
+        setActivityIndex(parseFloat(8 + Math.random(),).toFixed(2));
     }
   }, [score]);
 
@@ -87,7 +98,7 @@ export default function() {
         </div>
 
         <div className={styles.productivity}>
-          <ProductivityStats index={3.71}/>
+          <ProductivityStats index={activityIndex} currentState={currentState}/>
         </div>
 
         <div className={styles.participants}>
