@@ -69,8 +69,7 @@ class WaremaBlind():
             seconds (float): Seconds to move.
         """
 
-        if direction == 0:
-            self.tilt_open()
+        self.tilt_open()
 
         automationhat.relay.two.on()
         print("going down")
