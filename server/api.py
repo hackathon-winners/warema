@@ -1,33 +1,13 @@
-from flask import Flask, render_template
-from flask import Flask, render_template
-from flask_socketio import SocketIO, send, emit
-
-import asyncio
-import sys
+from flask import Flask
 import time
+
+import sys
 sys.path.insert(0, '../')
+# custom Warema API
 from warema_python_api.warema import  WaremaBlind
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
-
 warema = WaremaBlind()
-
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))
-
-@socketio.on('message')
-def handle_message(message):
-    send("chat message", message)
-
-if __name__ == '__main__':
-    socketio.run(app)
-
-# @app.route('/')
-# def hello_world():
-#     return render_template('hi.html')
 
 @app.route('/blinds/init', methods=['GET'])
 def blind_init():
@@ -38,15 +18,6 @@ def blind_init():
 def blind_status():
     status = warema.status()
     return 'initialize '+ str(status)
-
-# @app.route('/blinds/open', methods=['GET'])
-# def blind_open():
-#     warema.up(1)
-#     return 'OPEN'
-
-# @app.route('/blinds/close', methods=['GET'])
-# def blind_close():
-#     return 'CLOSE'
 
 @app.route('/blinds/up', methods=['GET'])
 def blind_up():
@@ -73,18 +44,8 @@ def blind_tilt(amount):
     warema.set_tilt(amount)
     return 'titl '
 
-# @app.route('/blinds/stop', methods=['GET'])
-# def blind_stop():
-#     return 'STOPPING '
-
-# @app.route('/blinds/tilt/<int:amount>', methods=['GET'])
-# def blind_down_by(amount):
-#     return 'DOWN '+ str(amount)
-
-
 @app.route('/blinds/meeting/start', methods=['GET'])
 def meeting_start():
-
     # formal meeting cfirst close then starts half, formal metting tilt completly then is over
     warema.set_tilt(.5)
     return  'MEETING START'
@@ -93,9 +54,6 @@ def meeting_start():
 def meeting_formal():
     warema.set_tilt(.5)
     return 'MEETING formal'
-
-
-
 
 @app.route('/blinds/meeting/empty', methods=['GET'])
 def meeting_empty():
@@ -112,105 +70,86 @@ def meeting_end():
 def meeting_switch_to(meeting_type):
     return 'MEETING '+ meeting_type
 
-@app.route('/starwars', methods=['GET'])
+# THE REAL CODE STARTS HERE
+# DOING MUSIC WITH THE BLINDS
+@app.route('/music/smoke', methods=['GET'])
+def smoke():
+    for x in range(2):
+        warema.set_tilt(.250)
+        time.sleep(0.250)
+        warema.set_tilt(-.250)
+        time.sleep(0.250)
+        warema.set_tilt(.500)
+        time.sleep(0.200)
+        warema.set_tilt(-.250)
+        time.sleep(0.200)
+        warema.set_tilt(.250)
+        time.sleep(0.150)
+        warema.set_tilt(-.250)
+        warema.set_tilt(.500)
+        time.sleep(0.500)
+        warema.set_tilt(-.250)
+        time.sleep(0.250)
+        warema.set_tilt(.250)
+        time.sleep(0.250)
+        warema.set_tilt(-.500)
+        time.sleep(0.30)
+        warema.set_tilt(.350)
+        warema.set_tilt(-.1050)
+        time.sleep(1)
+    return 'SMOKE'
+
+@app.route('/music/starwars', methods=['GET'])
 def starwars():
     warema.set_tilt(0)
     time.sleep(2)
 
+    warema.set_tilt(.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.710/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.220/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.710/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.220/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.470/ 3)
+    time.sleep(.2)
 
-    warema.set_tilt(.250)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    time.sleep(.250)
-    warema.set_tilt(.500)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    time.sleep(.250)
-    warema.set_tilt(.250)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    warema.set_tilt(.500)
-    time.sleep(.500)
+    time.sleep(1.520 / 3)
+    time.sleep(.2)
 
-    warema.set_tilt(.250)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    time.sleep(.250)
-    warema.set_tilt(.500)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    time.sleep(.250)
-    warema.set_tilt(.250)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    warema.set_tilt(.500)
-    time.sleep(.500)
+    warema.set_tilt(1/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.710/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.220/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.990/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.710/ 3)
+    time.sleep(.2)
+    warema.set_tilt(-.220/ 3)
+    time.sleep(.2)
+    warema.set_tilt(.470/ 3)
+    time.sleep(.2)
 
-    warema.set_tilt(.250)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    time.sleep(.250)
-    warema.set_tilt(.500)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    time.sleep(.250)
-    warema.set_tilt(.250)
-    time.sleep(.250)
-    warema.set_tilt(-.250)
-    warema.set_tilt(.500)
-    time.sleep(500)
+    warema.set_tilt(-.5)
+    warema.set_tilt(.5)
+    warema.set_tilt(-.5)
+    warema.set_tilt(-.2)
+    warema.set_tilt(.6)
+    warema.set_tilt(-.6)
 
-
-
-
-
-    # warema.set_tilt(.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.710/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.220/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.710/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.220/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.470/ 3)
-    # time.sleep(.2)
-
-    # time.sleep(1.520 / 3)
-    # time.sleep(.2)
-
-    # warema.set_tilt(1/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.710/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.220/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.990/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.710/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(-.220/ 3)
-    # time.sleep(.2)
-    # warema.set_tilt(.470/ 3)
-    # time.sleep(.2)
-
-    # warema.set_tilt(-.5)
-    # warema.set_tilt(.5)
-    # warema.set_tilt(-.5)
-    # warema.set_tilt(-.2)
-    # warema.set_tilt(.6)
-    # warema.set_tilt(-.6)
-
-
-    return 'DOWN '
+    return 'STAR WARS '

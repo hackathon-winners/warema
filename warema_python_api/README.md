@@ -1,4 +1,4 @@
-API for Warema Blinds (Local operation: time mode)
+### API for Warema Blinds (Local operation: time mode)
 
 This API is designed for a setup made of a RaspberryPi 3 with an AutomationHat adapter.
 
