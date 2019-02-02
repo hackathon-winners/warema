@@ -1,0 +1,75 @@
+@import "variables";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Lato, sans-serif;
+}
+h2 {
+    margin:0;
+}
+.container {
+    height: 100%;
+    display: grid;
+    padding: 72px;
+
+    grid-column-gap: 36px;
+    grid-row-gap: 36px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "component1 main main main"
+        "component2 main main main"
+        "component3 component4 component5 component6";
+
+    @media (max-width: 960px) {
+        grid-template-areas: 
+            "main"
+            "component1"
+            "component2"
+            "component3"
+            "component4"
+            "component5"
+            "component6"
+    }
+
+    background-color: $blue1;
+    color: $blue3;
+    video, canvas {
+        width: 100%;
+    }
+
+    > * {
+        background-color: $blue2;
+        padding:24px;
+        box-shadow: 2px 2px 8px $shadow;
+
+        h2 {
+            font-weight: 400;
+            font-size: 18px;
+            border-bottom: 1px solid $blue1;
+        }
+    }
+    .motioncharts {
+        grid-area: component1;
+    }
+    .videostream {
+        grid-area: component2;
+    }
+    .motionstream {
+        grid-area: component3;
+    }
+    .productivity {
+        grid-area: main;
+    }
+    .participants {
+        grid-area: component4;
+    }
+    .timeschedule {
+        grid-area: component5;
+    }
+    .activitylog {
+        grid-area: component6;
+    }
+}
