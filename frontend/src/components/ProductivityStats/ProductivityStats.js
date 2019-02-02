@@ -11,8 +11,6 @@ export default function({index}) {
   return (
     <div className={styles.ProductivityStats}>
 
-        <p>Index = {index}</p>
-
         <div className={styles.title}>
           <DashboardElementHeader title="Meeting productivity" info="high"/>
         </div>

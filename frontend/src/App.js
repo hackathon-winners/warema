@@ -30,7 +30,7 @@ export default function() {
       <div className={styles.container}>
 
         <div className={styles.motioncharts}>
-          <h2>Motion charts</h2>
+        <DashboardElementHeader title="Motion charts" info={score}/>
           <ActivityGraph score={score} />
         </div>
 
@@ -40,13 +40,12 @@ export default function() {
         </div>
 
         <div className={styles.motionstream}>
-          <h2>Motion detection<span className={styles.focus}>live</span></h2>
+          <DashboardElementHeader title="Motion detection" info="live"/>
           <MotionDetector setScore={setScore} video={video} />
         </div>
 
         <div className={styles.productivity}>
           <ProductivityStats index={3.71}/>
-          {score}
         </div>
 
         <div className={styles.participants}>
@@ -59,6 +58,7 @@ export default function() {
 
         <div className={styles.activitylog}>
         <DashboardElementHeader title="Activity log" info="12:43"/>
+        
         </div>
 
       </div>

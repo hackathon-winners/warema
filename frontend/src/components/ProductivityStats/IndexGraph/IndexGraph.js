@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./IndexGraph.module.scss";
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, defaults } from "react-chartjs-2";
 
+defaults.global.defaultFontColor='#3F93C6';
 export default function({index}) {
     var indexPercentage = index*10;
     const options = {
