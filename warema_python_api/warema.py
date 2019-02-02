@@ -1,4 +1,4 @@
-#import automationhat
+import automationhat
 import time
 
 class WaremaBlind():
@@ -21,19 +21,19 @@ class WaremaBlind():
         return self.position
 
     def tilt_open( value ): # tilt from 100 to 0
-        #automationhat.relay.one.on()
+        automationhat.relay.one.on()
         time.sleep(seconds)
-        # automationhat.relay.one.off()
+        automationhat.relay.one.off()
 
-    def tilt_close(value):  # tilt from 100 to 0
+    def tilt_close(vale):  # tilt from 100 to 0
         remaining = 100 - self.tilt
         if value > remaining:
             value = remaining
         self.tilt = value
         seconds = value / 100
-        #automationhat.relay.two.on()
+        automationhat.relay.two.on()
         time.sleep(seconds)
-        # automationhat.relay.two.off()
+        automationhat.relay.two.off()
 
 
     def up(self, seconds: float):
@@ -43,21 +43,21 @@ class WaremaBlind():
             seconds (float): Seconds to move.
         """
 
-        if direction == 1:
-            self.tilt_close()
+
+        self.tilt_close()
 
         self.position  = self.position - 10
-        #automationhat.relay.one.on()
+        automationhat.relay.one.on()
         time.sleep(seconds)
-        #automationhat.relay.one.off()
+        automationhat.relay.one.off()
         print("going up")
         time.sleep(0.1)
 
         # if blind has entered lock mode
         if seconds >= 2:
-            #automationhat.relay.two.on()
+            automationhat.relay.two.on()
             time.sleep(0.1)
-            #automationhat.relay.two.off()
+            automationhat.relay.two.off()
             time.sleep(0.1)
 
         print("finish up")
@@ -72,17 +72,17 @@ class WaremaBlind():
         if direction == 0:
             self.tilt_open()
 
-        #automationhat.relay.two.on()
+        automationhat.relay.two.on()
         print("going down")
         time.sleep(seconds)
 
         print("down !")
-        #automationhat.relay.two.off()
+        automationhat.relay.two.off()
         time.sleep(0.1)
 
         # if blind has entered lock mode
         if seconds >= 2:
-            #automationhat.relay.one.on()
+            automationhat.relay.one.on()
             time.sleep(0.1)
-            #automationhat.relay.one.off()
+            automationhat.relay.one.off()
             time.sleep(0.1)
