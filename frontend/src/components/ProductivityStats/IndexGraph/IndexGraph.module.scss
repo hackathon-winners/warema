@@ -1,0 +1,13 @@
+@import "../../../variables";
+.IndexGraph {
+    position:relative;
+    margin-bottom: 50px;
+    .label {
+        font-size: 96px;
+        font-weight: 900;
+        color: $green;
+        position:absolute;
+        bottom:0;
+        width:100%;
+    }
+}

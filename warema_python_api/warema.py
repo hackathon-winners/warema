@@ -30,7 +30,7 @@ class WaremaBlind():
             self.tilt = 0
 
         relay.on()
-        time.sleep(value)
+        time.sleep(abs(value))
         relay.off()
 
     def up(self, seconds: float):

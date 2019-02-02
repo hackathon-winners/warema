@@ -5,9 +5,38 @@ import { Line, defaults } from "react-chartjs-2";
 defaults.global.animation = false;
 
 export default function({ score }) {
+  const options = {
+    animation: false,
+    legend: {
+        display: false
+    },
+    tooltips: {
+        enabled: false
+    },
+    scales:{
+      scaleLabel: [{
+        fontColor: 'white',
+      }],
+      yAxes: [{
+          display: false //this will remove all the x-axis grid lines
+      }],
+      xAxes: [{
+        ticks: { 
+          maxTicksLimit: 6,
+         }
+      }],
+    },
+    elements: { point: { radius: 0 } },
+}
   const [data, setData] = useState({
     labels: [],
-    datasets: [{ data: [], label: "Activity Monitor" }]
+    datasets: [{ data: [], 
+      label: "Activity Monitor",
+      borderColor : '#3F93C6',
+      backgroundColor: [
+      "rgba(18, 47, 65, .5)"
+      ], }],
+    
   });
 
   useEffect(() => {
@@ -32,5 +61,5 @@ export default function({ score }) {
     });
   }, [score]);
 
-  return <Line data={data} redraw={true} />;
+  return <Line data={data} redraw={true} options={options}/>;
 }

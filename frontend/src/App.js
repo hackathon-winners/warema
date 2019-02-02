@@ -89,7 +89,7 @@ export default function() {
         </div>
 
         <div className={styles.productivity}>
-          <ProductivityStats />
+          <ProductivityStats index={3.71} />
           {score}
         </div>
 
@@ -108,9 +108,7 @@ export default function() {
         </div>
 
         <div className={styles.activitylog}>
-          <h2>
-            Activity Log<span className={styles.focus}>12:43</span>
-          </h2>
+          <DashboardElementHeader title="Activity log" info="12:43" />
           <ActivityLog messages={messages} />
         </div>
       </div>
