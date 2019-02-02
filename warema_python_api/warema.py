@@ -20,12 +20,12 @@ class WaremaBlind():
     def status(self):
         return self.position
 
-    def tilt_open( value ): # tilt from 100 to 0
+    def tilt_open(self, value ): # tilt from 100 to 0
         automationhat.relay.one.on()
         time.sleep(1)
         automationhat.relay.one.off()
 
-    def tilt_close(vale):  # tilt from 100 to 0
+    def tilt_close(self, vale):  # tilt from 100 to 0
         remaining = 100 - self.tilt
         if value > remaining:
             value = remaining
