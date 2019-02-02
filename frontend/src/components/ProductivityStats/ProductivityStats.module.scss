@@ -1,0 +1,48 @@
+@import "../../fontimport";
+
+.ProductivityStats {
+    display: grid;
+    height: 100%;
+    grid-column-gap: 18px;
+    grid-row-gap: 18px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+        "title title"
+        "main info"
+        "main trends";
+
+    @each $div in "main", "title", "info", "trends" {
+        .#{$div} {
+            grid-area: #{$div};
+        }
+    }
+    .indexStat {
+        width: 80%;
+        text-align:center;
+        .label {
+            font-size: 96px;
+            font-weight: 900;
+        }
+        p {
+            font-size: 18px;
+        }
+    }    
+    .iconStat {
+        h4 {
+            margin:0;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        p {
+            margin:0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+        &:before {
+            content:"\f508";
+            font-family: FontAwesome;
+        }
+    }
+
+}
