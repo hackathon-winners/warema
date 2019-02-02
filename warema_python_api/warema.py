@@ -31,7 +31,7 @@ class WaremaBlind():
 
         relay.on()
         time.sleep(value)
-        relay.one.off()
+        relay.off()
 
     def up(self, seconds: float):
         """Moves the window blind upwards.
