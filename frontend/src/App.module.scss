@@ -3,7 +3,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
     font-family: Lato, sans-serif;
 }
 h2 {
@@ -16,15 +16,29 @@ h2 {
 
     grid-column-gap: 36px;
     grid-row-gap: 36px;
-    grid-template-columns: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas:
         "component1 main main main"
         "component2 main main main"
         "component3 component4 component5 component6";
 
+    @media (max-width: 960px) {
+        grid-template-areas: 
+            "main"
+            "component1"
+            "component2"
+            "component3"
+            "component4"
+            "component5"
+            "component6"
+    }
+
     background-color: $blue1;
     color: $blue3;
+    video, canvas {
+        width: 100%;
+    }
 
     > * {
         background-color: $blue2;

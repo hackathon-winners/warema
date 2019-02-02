@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./MotionDetector.module.scss";
 import { processDiff } from "./helper.js";
 
@@ -6,27 +6,12 @@ export default function({
   defaultWidth = 640,
   defaultHeight = 480,
   calcWidth = 64,
-  calcHeight = 48
+  calcHeight = 48,
+  video,
+  setScore
 }) {
-  const video = useRef(null);
   const canvas = useRef(null);
   const canvasMotion = useRef(null);
-  const [score, setScore] = useState(null);
-
-  useEffect(() => {
-    var constraints = {
-      audio: false,
-      video: { width: defaultWidth, height: defaultHeight }
-    };
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then(success => {
-        video.current.srcObject = success;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, [video.current]);
 
   useEffect(() => {
     if (!canvas.current) {
@@ -62,14 +47,8 @@ export default function({
 
   return (
     <div className={styles.container}>
-      <div>
-        <video ref={video} autoPlay />
-      </div>
-      <div>
-        <canvas ref={canvasMotion} />
-        <div>{score}</div>
-        <canvas className={styles.hide} ref={canvas} />
-      </div>
+      <canvas ref={canvasMotion} />
+      <canvas className={styles.hide} ref={canvas} />
     </div>
   );
 }
