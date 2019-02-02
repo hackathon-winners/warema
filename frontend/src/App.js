@@ -1,32 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import MotionDetector from "./components/MotionDetector/MotionDetector";
-import Mira from "./components/Mira/Mira";
-
-const Index = () => <h2>Home</h2>;
-const Flo = () => <div><MotionDetector /></div>;
 
 export default function() {
+  const video = useRef(undefined);
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    var constraints = {
+      audio: false,
+      video: { width: 640, height: 480 }
+    };
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(success => {
+        video.current.srcObject = success;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [video.current]);
   return (
     <Router>
       <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/mira">Mira</Link>
-            </li>
-            <li>
-              <Link to="/flo">Flo</Link>
-            </li>
-          </ul>
-        </nav>
-        <Route path="/" exact component={Index} />
-        <Route path="/mira" component={Mira} />
-        <Route path="/flo" component={Flo} />
+        <video ref={video} autoPlay />
+        <MotionDetector setScore={setScore} video={video} />
+        {score}
       </div>
     </Router>
   );
