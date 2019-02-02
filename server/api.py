@@ -80,12 +80,12 @@ def blind_down_by(amount):
 def meeting_start():
 
     # formal meeting cfirst close then starts half, formal metting tilt completly then is over
-    warema.tilt(.5)
+    warema.set_tilt(.5)
     return  'MEETING START'
 
 @app.route('/blinds/meeting/formal', methods=['GET'])
 def meeting_formal(meeting_type):
-    warema.tilt(.5)
+    warema.set_tilt(.5)
     return 'MEETING formal'
 
 
