@@ -105,3 +105,24 @@ def meeting_end():
 @app.route('/blinds/meeting/<string:meeting_type>', methods=['GET'])
 def meeting_switch_to(meeting_type):
     return 'MEETING '+ meeting_type
+
+@app.route('/starwars', methods=['GET'])
+def starwars():
+    warema.tilt(0)
+    warema.up(4)
+    time.sleep(.1)
+
+    warema.tilt(.5)
+    warema.tilt(-.5)
+    warema.tilt(.5)
+    time.sleep(.5)
+
+    warema.tilt(-.5)
+    warema.tilt(.5)
+    warema.tilt(-.5)
+    warema.tilt(-.2)
+    warema.tilt(.6)
+    warema.tilt(-.6)
+
+
+    return 'DOWN '+ str(amount)
