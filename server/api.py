@@ -95,7 +95,7 @@ def smoke():
         warema.set_tilt(-.500)
         time.sleep(0.30)
         warema.set_tilt(.350)
-        warema.set_tilt(-.750)
+        warema.set_tilt(-.1050)
         time.sleep(1)
     return 'SMOKE'
 
