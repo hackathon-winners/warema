@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, emit
 
+import asyncio
 import sys
 sys.path.insert(0, '../')
 from warema_python_api.warema import  WaremaBlind
@@ -9,6 +10,8 @@ from warema_python_api.warema import  WaremaBlind
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
+
+warema = WaremaBlind()
 
 @socketio.on('my event')
 def handle_my_custom_event(json):
@@ -25,9 +28,19 @@ if __name__ == '__main__':
 # def hello_world():
 #     return render_template('hi.html')
 
+@app.route('/blinds/init', methods=['GET'])
+def blind_init():
+    warema.init()
+    return 'initialize'
+
+@app.route('/blinds/status', methods=['GET'])
+def blind_status():
+    status = warema.status()
+    return 'initialize '+ str(status)
 
 @app.route('/blinds/open', methods=['GET'])
 def blind_open():
+    warema.up(7)
     return 'OPEN'
 
 @app.route('/blinds/close', methods=['GET'])
@@ -61,12 +74,30 @@ def blind_stop():
 
 @app.route('/blinds/meeting/start', methods=['GET'])
 def meeting_start():
-    return 'MEETING START'
+
+    status = warema.status()
+    remaining = 100 - status
+    seconds =  ( remaining * 100 ) / 36
+
+
+    # warema.down( seconds )
+
+    warema.up(1)
+
+    return  str(seconds) + ' MEETING START '+ str(status)
+
+
+@app.route('/blinds/meeting/empty', methods=['GET'])
+def meeting_empty():
+    status = warema.status()
+    warema.down( 36 )
+    return 'MEETING EMPTY  '+ str(status)
 
 @app.route('/blinds/meeting/end', methods=['GET'])
 def meeting_end():
     return 'MEETING END'
 
+# formal engage
 @app.route('/blinds/meeting/<string:meeting_type>', methods=['GET'])
 def meeting_switch_to(meeting_type):
     return 'MEETING '+ meeting_type
