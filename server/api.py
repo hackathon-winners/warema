@@ -9,6 +9,10 @@ from warema_python_api.warema import  WaremaBlind
 app = Flask(__name__)
 warema = WaremaBlind()
 
+@app.route('/', methods=['GET'])
+def init():
+    return 'works'
+
 @app.route('/blinds/init', methods=['GET'])
 def blind_init():
     warema.init()
@@ -153,3 +157,6 @@ def starwars():
     warema.set_tilt(-.6)
 
     return 'STAR WARS '
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
