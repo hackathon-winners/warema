@@ -8,7 +8,10 @@ class WaremaBlind():
     """
 
     def __init__(self):
-        self.position = 90
+        self.position = 100  # close
+        self.direnction = 1  # close
+        self.tilt = 1        # close
+        self.down(36)
 
     def init(self):
         self.position = 100
@@ -17,6 +20,21 @@ class WaremaBlind():
     def status(self):
         return self.position
 
+    def tilt_open( value ): # tilt from 100 to 0
+        #automationhat.relay.one.on()
+        time.sleep(seconds)
+        # automationhat.relay.one.off()
+
+    def tilt_close(value):  # tilt from 100 to 0
+        remaining = 100 - self.tilt
+        if value > remaining:
+            value = remaining
+        self.tilt = value
+        seconds = value / 100
+        #automationhat.relay.two.on()
+        time.sleep(seconds)
+        # automationhat.relay.two.off()
+
 
     def up(self, seconds: float):
         """Moves the window blind upwards.
@@ -24,6 +42,9 @@ class WaremaBlind():
         Args:
             seconds (float): Seconds to move.
         """
+
+        if direction == 1:
+            self.tilt_close()
 
         self.position  = self.position - 10
         #automationhat.relay.one.on()
@@ -47,6 +68,10 @@ class WaremaBlind():
         Args:
             seconds (float): Seconds to move.
         """
+
+        if direction == 0:
+            self.tilt_open()
+
         #automationhat.relay.two.on()
         print("going down")
         time.sleep(seconds)

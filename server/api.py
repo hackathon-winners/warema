@@ -38,34 +38,38 @@ def blind_status():
     status = warema.status()
     return 'initialize '+ str(status)
 
-@app.route('/blinds/open', methods=['GET'])
-def blind_open():
-    warema.up(7)
-    return 'OPEN'
+# @app.route('/blinds/open', methods=['GET'])
+# def blind_open():
+#     warema.up(1)
+#     return 'OPEN'
 
-@app.route('/blinds/close', methods=['GET'])
-def blind_close():
-    return 'CLOSE'
+# @app.route('/blinds/close', methods=['GET'])
+# def blind_close():
+#     return 'CLOSE'
 
 @app.route('/blinds/up', methods=['GET'])
 def blind_up():
+    warema.up(1)
     return 'UP'
 
 @app.route('/blinds/down', methods=['GET'])
 def blind_down():
+    warema.down(1)
     return 'DOWN'
 
 @app.route('/blinds/up/<int:amount>', methods=['GET'])
 def blind_up_by(amount):
+    warema.up(amount)
     return 'UP '+ str(amount)
 
 @app.route('/blinds/down/<int:amount>', methods=['GET'])
 def blind_down_by(amount):
+    warema.down(amount)
     return 'DOWN '+ str(amount)
 
-@app.route('/blinds/stop', methods=['GET'])
-def blind_stop():
-    return 'STOPPING '
+# @app.route('/blinds/stop', methods=['GET'])
+# def blind_stop():
+#     return 'STOPPING '
 
 # @app.route('/blinds/tilt/<int:amount>', methods=['GET'])
 # def blind_down_by(amount):
