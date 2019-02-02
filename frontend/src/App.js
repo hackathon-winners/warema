@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import Flo from "./components/Flo/Flo";
+import MotionDetector from "./components/MotionDetector/MotionDetector";
 import Mira from "./components/Mira/Mira";
 
 const Index = () => <h2>Home</h2>;
+const Flo = () => <div><MotionDetector /></div>;
 
 export default function() {
   return (
