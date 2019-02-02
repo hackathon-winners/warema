@@ -93,12 +93,12 @@ def meeting_switch_to(meeting_type):
 
 @app.route('/blinds/meeting/empty', methods=['GET'])
 def meeting_empty():
-    status = warema.status()
-    warema.down( 36 )
+    warema.down( 3 )
     return 'MEETING EMPTY  '+ str(status)
 
 @app.route('/blinds/meeting/end', methods=['GET'])
 def meeting_end():
+    warema.up( 37 )
     return 'MEETING END'
 
 # formal engage
