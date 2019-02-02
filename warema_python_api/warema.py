@@ -20,9 +20,9 @@ class WaremaBlind():
 
 
     def set_tilt(self, value): # 0 is close one is open
-        relay = automationhat.relay.one
+        relay = automationhat.relay.two
         if value > 0:
-            relay = automationhat.relay.two
+            relay = automationhat.relay.one
         self.tilt = self.tilt + value
         if self.tilt > 1:
             self.tilt = 1
