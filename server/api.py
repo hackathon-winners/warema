@@ -2,7 +2,7 @@ from flask import Flask
 import time
 
 import sys
-sys.path.insert(0, '../')
+sys.path.insert(0, '/home/pi/be5/src/warema')
 # custom Warema API
 from warema_python_api.warema import  WaremaBlind
 
@@ -99,7 +99,7 @@ def smoke():
         warema.set_tilt(-.500)
         time.sleep(0.30)
         warema.set_tilt(.350)
-        warema.set_tilt(-.1250)
+        warema.set_tilt(-.1350)
         time.sleep(1)
     return 'SMOKE'
 
