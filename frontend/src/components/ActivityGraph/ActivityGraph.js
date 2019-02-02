@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import { defaults } from "react-chartjs-2";
+import { Line, defaults } from "react-chartjs-2";
 
 // Disable animating charts by default.
 defaults.global.animation = false;

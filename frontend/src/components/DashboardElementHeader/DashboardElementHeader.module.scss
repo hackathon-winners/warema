@@ -1,0 +1,16 @@
+@import "../../variables";
+
+h2 {
+    margin:0 0 18px 0;
+    padding-bottom: 12px;
+    font-weight: 400;
+    border-bottom: 1px solid $blue1;
+
+    .focus {
+        font-weight: 900;
+    }
+    .focus:before {
+        content: " \2022 ";
+        font-weight: 100;
+    }
+}

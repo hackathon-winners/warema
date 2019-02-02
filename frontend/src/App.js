@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import MotionDetector from "./components/MotionDetector/MotionDetector";
+import ActivityGraph from "./components/ActivityGraph/ActivityGraph";
+import ProductivityStats from "./components/ProductivityStats/ProductivityStats";
+import DashboardElementHeader from "./components/DashboardElementHeader/DashboardElementHeader";
 import styles from "./App.module.scss";
 
 export default function() {
@@ -25,18 +28,39 @@ export default function() {
   return (
     <Router>
       <div className={styles.container}>
+
         <div className={styles.motioncharts}>
-          <h2>Meeting productivity <span className={styles.focus}>• high</span></h2>
+          <h2>Motion charts</h2>
+          <ActivityGraph score={score} />
         </div>
+
         <div className={styles.videostream}>
-        <video ref={video} autoPlay />
-        
+          <DashboardElementHeader title="Video stream" info="live"/>
+          <video ref={video} autoPlay />
         </div>
-        <div className={styles.motionstream}><MotionDetector setScore={setScore} video={video} /></div>
-        <div className={styles.productivity}>{score}</div>
-        <div className={styles.participants}></div>
-        <div className={styles.timeschedule}></div>
-        <div className={styles.activitylog}></div>1a60798ebd5f73d41ed896e4fdac61614906125b
+
+        <div className={styles.motionstream}>
+          <h2>Motion detection<span className={styles.focus}>live</span></h2>
+          <MotionDetector setScore={setScore} video={video} />
+        </div>
+
+        <div className={styles.productivity}>
+          <ProductivityStats />
+          {score}
+        </div>
+
+        <div className={styles.participants}>
+          <h2>Participants<span className={styles.focus}>6</span></h2>
+        </div>
+
+        <div className={styles.timeschedule}>
+          <h2>Timeschedule<span className={styles.focus}>1h30m left</span></h2>
+        </div>
+
+        <div className={styles.activitylog}>
+        <h2>Activity Log<span className={styles.focus}>12:43</span></h2>
+        </div>
+
       </div>
     </Router>
   );
