@@ -118,17 +118,25 @@ def starwars():
     warema.up(4)
     time.sleep(.1)
 
-    warema.set_tilt(.5)
-    warema.set_tilt(-.5)
-    warema.set_tilt(.5)
+    warema.set_tilt(1)
+    warema.set_tilt(-1)
+    warema.set_tilt(1)
+    warema.set_tilt(-.71)
+    warema.set_tilt(.28)
+    warema.set_tilt(1)
+    warema.set_tilt(-.71)
+    warema.set_tilt(5)
+
+
+
     time.sleep(.5)
 
-    warema.set_tilt(-.5)
-    warema.set_tilt(.5)
-    warema.set_tilt(-.5)
-    warema.set_tilt(-.2)
-    warema.set_tilt(.6)
-    warema.set_tilt(-.6)
+    # warema.set_tilt(-.5)
+    # warema.set_tilt(.5)
+    # warema.set_tilt(-.5)
+    # warema.set_tilt(-.2)
+    # warema.set_tilt(.6)
+    # warema.set_tilt(-.6)
 
 
     return 'DOWN '
