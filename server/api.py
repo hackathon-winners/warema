@@ -68,6 +68,11 @@ def blind_down_by(amount):
     warema.down(amount)
     return 'DOWN '+ str(amount)
 
+@app.route('/blinds/tilt/<float:amount>', methods=['GET'])
+def blind_tilt(amount):
+    warema.tilt(amount)
+    return 'titl '
+
 # @app.route('/blinds/stop', methods=['GET'])
 # def blind_stop():
 #     return 'STOPPING '
@@ -126,4 +131,4 @@ def starwars():
     warema.set_tilt(-.6)
 
 
-    return 'DOWN '+ str(amount)
+    return 'DOWN '
