@@ -6,8 +6,21 @@
         text-align: center;
     }
     p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 400;
+        margin: 0;
+    }
+    .timestamp {
+        font-weight: 800;
+    }
+    .startendlabels {
+        display:flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        > .label:last-child {
+            text-align:right;
+        }
     }
     .progressBar {
         height: 5px;
@@ -22,6 +35,11 @@
             position:absolute;
             top:-2.5px;
             width: 73%;
+        }
+        .label {
+            position: absolute;
+            bottom: -30px;
+            left: calc(73% - 20px);
         }
     }
 }

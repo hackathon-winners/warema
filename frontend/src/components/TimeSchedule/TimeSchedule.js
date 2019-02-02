@@ -27,8 +27,8 @@ export default function() {
           <div className={styles.label}><p>END</p><p className={styles.timestamp}>03:00</p></div>
         </div>
         <div className={styles.progressBar}>
-          <div className={styles.progress}></div>
-          <div className={styles.label}><p className={styles.timestamp}>02:35</p></div>
+          <div className={styles.progress} style={{width: "20%"}}></div>
+          <div className={styles.label} style={{left: "calc(20% - 20px)"}}><p className={styles.timestamp}>02:35</p></div>
         </div>
       </div>
     </div>
