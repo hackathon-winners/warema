@@ -7,6 +7,10 @@ class WaremaBlind():
         (Local operation: time mode)
     """
 
+    def __init__(self):
+        self.position = 100
+        self.tilt = 0
+
     def init(self):
         self.position = 100
         self.down(36)
@@ -15,9 +19,9 @@ class WaremaBlind():
         return self.position
 
 
-    def tilt(self, value): # 0 is close one is open
+    def set_tilt(self, value): # 0 is close one is open
         relay = automationhat.relay.one
-        if value > 0
+        if value > 0:
             relay = automationhat.relay.two
         self.tilt = self.tilt + value
         if self.tilt > 1:

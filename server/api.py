@@ -84,7 +84,7 @@ def meeting_start():
     return  'MEETING START'
 
 @app.route('/blinds/meeting/formal', methods=['GET'])
-def meeting_switch_to(meeting_type):
+def meeting_formal(meeting_type):
     warema.tilt(.5)
     return 'MEETING formal'
 
