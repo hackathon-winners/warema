@@ -145,8 +145,6 @@ export default function() {
           />
         </div>
 
-        <div className={styles.facedetection} />
-
         <div className={styles.timeschedule}>
           <h2>Timeschedule</h2>
           <TimeSchedule />
