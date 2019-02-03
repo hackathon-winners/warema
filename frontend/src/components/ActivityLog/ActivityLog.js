@@ -8,7 +8,7 @@ export default function({ messages }) {
   return (
     <ul>
       {messages.map(message => (
-        <li>{message}</li>
+        <li key={Math.random()}>{message}</li>
       ))}
     </ul>
   );
