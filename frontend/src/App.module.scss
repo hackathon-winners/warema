@@ -21,7 +21,7 @@ html, body {
     grid-template-areas:
         "component1 main main main"
         "component2 main main main"
-        "component3 component4 component5 component6";
+        "component3 component5 component5 component6";
 
     @media (max-width: 960px) {
         grid-template-areas: 
@@ -57,16 +57,13 @@ html, body {
         grid-area: component1;
     }
     .videostream {
-        grid-area: component2;
+        grid-area: component3;
     }
     .motionstream {
-        grid-area: component3;
+        grid-area: component2;
     }
     .productivity {
         grid-area: main;
-    }
-    .facedetection {
-        grid-area: component4;
     }
     .timeschedule {
         grid-area: component5;
