@@ -65,7 +65,7 @@ export default function() {
     if (overallScore > 4000 && overallScore <= 7000) {
       if (currentState === "started") {
         setCurrentState("normal");
-        setMessages(prev => ["Meeting turned formal", ...prev]);
+        setMessages(prev => ["Formal meeting detected", ...prev]);
 
         fetch("http://192.168.2.2:5000/blinds/meeting/formal")
           .then(() => {})
@@ -77,7 +77,7 @@ export default function() {
     if (overallScore > 15000) {
       if (currentState === "normal") {
         setCurrentState("active");
-        setMessages(prev => ["Meeting turned engaged", ...prev]);
+        setMessages(prev => ["Engaged meeting detected", ...prev]);
 
         fetch("http://192.168.2.2:5000/blinds/meeting/end")
           .then(() => {})

@@ -12,4 +12,11 @@ ul.ActivityLog {
         box-shadow: 1px 1px 10px $shadow;
         border: 1px solid $blue1;
     }
+    .timestamp {
+        font-weight: 800;
+    }
+    .timestamp:after {
+        content: " \2022 ";
+        font-weight: 100;
+    }
 }
