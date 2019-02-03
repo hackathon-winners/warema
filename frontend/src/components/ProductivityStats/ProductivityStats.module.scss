@@ -17,6 +17,9 @@
             grid-area: #{$div};
         }
     }
+    .main {
+        align-self: center;
+    }
     .indexStat {
         width: 100%;
         text-align:center;

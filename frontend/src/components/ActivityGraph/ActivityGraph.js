@@ -4,7 +4,8 @@ import { Line, defaults } from "react-chartjs-2";
 // Disable animating charts by default.
 defaults.global.animation = false;
 
-export default function({ score }) {
+export default function({ score, globalTrend }) {
+  var shifting = !globalTrend;
   const options = {
     animation: false,
     legend: {
@@ -43,8 +44,8 @@ export default function({ score }) {
     setData(prev => {
       const d = new Date();
       const n = d.getSeconds();
-
-      if (prev.labels.length === 60) {
+      console.log(shifting)
+      if (prev.labels.length === 40 && shifting) {
         // remove
         prev.labels.shift();
         prev.datasets.forEach(dataset => {

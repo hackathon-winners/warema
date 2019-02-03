@@ -84,7 +84,7 @@ export default function() {
       <div className={styles.container}>
         <div className={styles.motioncharts}>
         <DashboardElementHeader title="Motion charts" info={score}/>
-          <ActivityGraph score={score} />
+          <ActivityGraph score={score} globalTrend={false} />
         </div>
 
         <div className={styles.videostream}>
