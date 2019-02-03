@@ -68,7 +68,7 @@ export default function() {
         setCurrentState("started");
         setActivityIndex(parseFloat(1 + Math.random()).toFixed(2));
 
-        fetch("htpp://192.168.2.2:5000/blinds/meeting/start")
+        fetch("http://192.168.2.2:5000/blinds/meeting/start")
           .then(function() {
             console.log("ok");
           })
@@ -99,7 +99,7 @@ export default function() {
         setActivityIndex(parseFloat(8 + Math.random()).toFixed(2));
         setMessages(prev => ["Meeting turned engaged", ...prev]);
 
-        fetch("htpp://192.168.2.2:5000/blinds/meeting/end")
+        fetch("http://192.168.2.2:5000/blinds/meeting/end")
           .then(function() {
             console.log("ok");
           })
