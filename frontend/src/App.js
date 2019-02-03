@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import MotionDetector from "./components/MotionDetector/MotionDetector";
 import ActivityGraph from "./components/ActivityGraph/ActivityGraph";
@@ -9,6 +8,14 @@ import TimeSchedule from "./components/TimeSchedule/TimeSchedule";
 import DashboardElementHeader from "./components/DashboardElementHeader/DashboardElementHeader";
 import styles from "./App.module.scss";
 
+function get(name) {
+  if (
+    (name = new RegExp("[?&]" + encodeURIComponent(name) + "=([^&]*)").exec(
+      window.location.search
+    ))
+  )
+    return decodeURIComponent(name[1]);
+}
 export default function() {
   const video = useRef(undefined);
   const [currentState, setCurrentState] = useState("quiet");
@@ -16,6 +23,8 @@ export default function() {
   const [scoreLog, setScoreLog] = useState([]);
   const [messages, setMessages] = useState([]);
   const [activityIndex, setActivityIndex] = useState(0);
+
+  const brain_api = get("AI_URL") || "192.168.2.2";
 
   // connect the webcam with the video element
   useEffect(() => {
@@ -54,7 +63,7 @@ export default function() {
         setCurrentState("started");
         setMessages(prev => ["Meeting started", ...prev]);
 
-        fetch("http://192.168.2.2:5000/blinds/meeting/start")
+        fetch(`http://${brain_api}:5000/blinds/meeting/start`)
           .then(() => {})
           .catch(error => {
             console.log(error);
@@ -67,7 +76,7 @@ export default function() {
         setCurrentState("normal");
         setMessages(prev => ["Formal meeting detected", ...prev]);
 
-        fetch("http://192.168.2.2:5000/blinds/meeting/formal")
+        fetch(`http://${brain_api}:5000/blinds/meeting/formal`)
           .then(() => {})
           .catch(error => {
             console.error(error);
@@ -79,7 +88,7 @@ export default function() {
         setCurrentState("active");
         setMessages(prev => ["Engaged meeting detected", ...prev]);
 
-        fetch("http://192.168.2.2:5000/blinds/meeting/end")
+        fetch(`http://${brain_api}:5000/blinds/meeting/end`)
           .then(() => {})
           .catch(error => {
             console.error(error);
@@ -96,43 +105,40 @@ export default function() {
   }, [score]);
 
   return (
-    <Router>
-      <div className={styles.container}>
-        <div className={styles.motioncharts}>
-          <DashboardElementHeader title="Motion charts" info={score} />
-          <ActivityGraph score={score} globalTrend={false} />
-        </div>
+    <div className={styles.container}>
+      <div className={styles.motioncharts}>
+        <DashboardElementHeader title="Motion charts" info={score} />
+        <ActivityGraph score={score} globalTrend={false} />
+      </div>
 
-        <div className={styles.videostream}>
-          <DashboardElementHeader title="Video stream" info="live" />
-          <div className={styles.videoContainer}>
-            <video ref={video} autoPlay />
-          </div>
-        </div>
-
-        <div className={styles.motionstream}>
-          <DashboardElementHeader title="Motion detection" info="live" />
-          <MotionDetector setScore={setScore} video={video} />
-        </div>
-
-        <div className={styles.productivity}>
-          <ProductivityStats
-            index={activityIndex}
-            currentState={currentState}
-            activityIndex={activityIndex}
-          />
-        </div>
-
-        <div className={styles.timeschedule}>
-          <h2>Timeschedule</h2>
-          <TimeSchedule />
-        </div>
-
-        <div className={styles.activitylog}>
-          <DashboardElementHeader title="Activity log" />
-          <ActivityLog messages={messages} />
+      <div className={styles.videostream}>
+        <DashboardElementHeader title="Video stream" info="live" />
+        <div className={styles.videoContainer}>
+          <video ref={video} autoPlay />
         </div>
       </div>
-    </Router>
+
+      <div className={styles.motionstream}>
+        <DashboardElementHeader title="Motion detection" info="live" />
+        <MotionDetector setScore={setScore} video={video} />
+      </div>
+
+      <div className={styles.productivity}>
+        <ProductivityStats
+          index={activityIndex}
+          currentState={currentState}
+          activityIndex={activityIndex}
+        />
+      </div>
+      <div className={styles.timeschedule}>
+        <h2>Timeschedule</h2>
+        <TimeSchedule />
+      </div>
+
+      <div className={styles.activitylog}>
+        <DashboardElementHeader title="Activity log" />
+        <ActivityLog messages={messages} />
+      </div>
+    </div>
   );
 }

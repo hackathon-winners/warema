@@ -14,7 +14,7 @@ export default function({ messages }) {
   return (
     <ul className={styles.ActivityLog}>
       {messages.map(message => (
-        <li><span className={styles.timestamp}>{timeformatted}</span>{message}</li>
+        <li key={Math.random()}><span className={styles.timestamp}>{timeformatted}</span>{message}</li>
       ))}
     </ul>
   );
