@@ -83,24 +83,32 @@ def smoke():
         time.sleep(0.250)
         warema.set_tilt(-.250)
         time.sleep(0.250)
+
         warema.set_tilt(.500)
-        time.sleep(0.200)
-        warema.set_tilt(-.250)
-        time.sleep(0.200)
-        warema.set_tilt(.250)
-        time.sleep(0.150)
-        warema.set_tilt(-.250)
+        time.sleep(0.250)
+
+        warema.set_tilt(-.200)
+        time.sleep(0.30)
+        warema.set_tilt(.200)
+        time.sleep(0.30)
+
+        warema.set_tilt(-.150)
+        time.sleep(0.20)
         warema.set_tilt(.500)
         time.sleep(0.500)
+
         warema.set_tilt(-.250)
-        time.sleep(0.250)
-        warema.set_tilt(.250)
-        time.sleep(0.250)
-        warema.set_tilt(-.500)
         time.sleep(0.30)
-        warema.set_tilt(.350)
-        warema.set_tilt(-.1350)
-        time.sleep(1)
+        warema.set_tilt(.250)
+        time.sleep(0.30)
+
+        warema.set_tilt(-.500)
+        time.sleep(0.250)
+
+        warema.set_tilt(.150)
+        time.sleep(0.2)
+        warema.set_tilt(-.500)
+        time.sleep(1.8)
     return 'SMOKE'
 
 @app.route('/music/starwars', methods=['GET'])
