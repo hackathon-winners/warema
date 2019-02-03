@@ -52,30 +52,68 @@ export default function() {
     // ~2000 quiet
     // ~5000 normal
     // ~10000 active
-    if (overallScore <= 4000) {
+    if (overallScore <= 2000) {
       if (currentState !== "quiet") {
         setCurrentState("quiet");
         setActivityIndex(parseFloat(1 + Math.random()).toFixed(2));
       }
     }
+
+    if (overallScore > 2000 && overallScore <= 4000) {
+      const wasThereAlreadyAStart = messages.filter(message => {
+        return message.indexOf("Meeting started") > -1;
+      }).length;
+
+      if (currentState !== "started" && !wasThereAlreadyAStart) {
+        setCurrentState("started");
+        setActivityIndex(parseFloat(1 + Math.random()).toFixed(2));
+
+        fetch("htpp://192.168.2.2:5000/blinds/meeting/start")
+          .then(function() {
+            console.log("ok");
+          })
+          .catch(function() {
+            console.log("error");
+          });
+      }
+    }
+
     if (overallScore > 4000 && overallScore <= 7000) {
       if (currentState !== "normal") {
         setCurrentState("normal");
-        setActivityIndex(parseFloat(5 + Math.random(),).toFixed(2));
+        setActivityIndex(parseFloat(5 + Math.random()).toFixed(2));
+        setMessages(prev => ["Meeting turned formal", ...prev]);
+
+        fetch("http://192.168.2.2:5000/blinds/meeting/formal")
+          .then(function() {
+            console.log("ok");
+          })
+          .catch(function() {
+            console.log("error");
+          });
       }
     }
     if (overallScore > 20000) {
       if (currentState !== "active") {
         setCurrentState("active");
-        setActivityIndex(parseFloat(8 + Math.random(),).toFixed(2));
+        setActivityIndex(parseFloat(8 + Math.random()).toFixed(2));
+        setMessages(prev => ["Meeting turned engaged", ...prev]);
+
+        fetch("htpp://192.168.2.2:5000/blinds/meeting/end")
+          .then(function() {
+            console.log("ok");
+          })
+          .catch(function() {
+            console.log("error");
+          });
       }
     }
     // activity index steps
     if (overallScore <= 50000) {
-        setActivityIndex(parseFloat(overallScore/6000).toFixed(2));
+      setActivityIndex(parseFloat(overallScore / 6000).toFixed(2));
     }
     if (overallScore > 50000) {
-        setActivityIndex(parseFloat(8 + Math.random(),).toFixed(2));
+      setActivityIndex(parseFloat(8 + Math.random()).toFixed(2));
     }
   }, [score]);
 
@@ -83,26 +121,31 @@ export default function() {
     <Router>
       <div className={styles.container}>
         <div className={styles.motioncharts}>
-        <DashboardElementHeader title="Motion charts" info={score}/>
+          <DashboardElementHeader title="Motion charts" info={score} />
           <ActivityGraph score={score} />
         </div>
 
         <div className={styles.videostream}>
           <DashboardElementHeader title="Video stream" info="live" />
-          <div className={styles.videoContainer}><video ref={video} autoPlay /></div>
+          <div className={styles.videoContainer}>
+            <video ref={video} autoPlay />
+          </div>
         </div>
 
         <div className={styles.motionstream}>
-          <DashboardElementHeader title="Motion detection" info="live"/>
+          <DashboardElementHeader title="Motion detection" info="live" />
           <MotionDetector setScore={setScore} video={video} />
         </div>
 
         <div className={styles.productivity}>
-          <ProductivityStats index={activityIndex} currentState={currentState} activityIndex={activityIndex}/>
+          <ProductivityStats
+            index={activityIndex}
+            currentState={currentState}
+            activityIndex={activityIndex}
+          />
         </div>
 
-        <div className={styles.facedetection}>
-        </div>
+        <div className={styles.facedetection} />
 
         <div className={styles.timeschedule}>
           <h2>Timeschedule</h2>
@@ -110,9 +153,8 @@ export default function() {
         </div>
 
         <div className={styles.activitylog}>
-        <DashboardElementHeader title="Activity log" info="12:43"/>
-        <ActivityLog messages={messages} />
-
+          <DashboardElementHeader title="Activity log" info="12:43" />
+          <ActivityLog messages={messages} />
         </div>
       </div>
     </Router>
