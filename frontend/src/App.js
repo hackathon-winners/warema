@@ -49,62 +49,40 @@ export default function() {
     // analyze Entries
     const overallScore = scoreLog.reduce((pv, cv) => pv + cv, 0);
 
-    // ~2000 quiet
-    // ~5000 normal
-    // ~10000 active
-    if (overallScore <= 2000) {
-      if (currentState !== "quiet") {
-        setCurrentState("quiet");
-        setActivityIndex(parseFloat(1 + Math.random()).toFixed(2));
-      }
-    }
-
     if (overallScore > 2000 && overallScore <= 4000) {
-      const wasThereAlreadyAStart = messages.filter(message => {
-        return message.indexOf("Meeting started") > -1;
-      }).length;
-
-      if (currentState !== "started" && !wasThereAlreadyAStart) {
+      if (currentState === "quiet") {
         setCurrentState("started");
-        setActivityIndex(parseFloat(1 + Math.random()).toFixed(2));
+        setMessages(prev => ["Meeting started", ...prev]);
 
         fetch("http://192.168.2.2:5000/blinds/meeting/start")
-          .then(function() {
-            console.log("ok");
-          })
-          .catch(function() {
-            console.log("error");
+          .then(() => {})
+          .catch(error => {
+            console.log(error);
           });
       }
     }
 
     if (overallScore > 4000 && overallScore <= 7000) {
-      if (currentState !== "normal") {
+      if (currentState === "started") {
         setCurrentState("normal");
-        setActivityIndex(parseFloat(5 + Math.random()).toFixed(2));
         setMessages(prev => ["Meeting turned formal", ...prev]);
 
         fetch("http://192.168.2.2:5000/blinds/meeting/formal")
-          .then(function() {
-            console.log("ok");
-          })
-          .catch(function() {
-            console.log("error");
+          .then(() => {})
+          .catch(error => {
+            console.error(error);
           });
       }
     }
-    if (overallScore > 20000) {
-      if (currentState !== "active") {
+    if (overallScore > 15000) {
+      if (currentState === "normal") {
         setCurrentState("active");
-        setActivityIndex(parseFloat(8 + Math.random()).toFixed(2));
         setMessages(prev => ["Meeting turned engaged", ...prev]);
 
         fetch("http://192.168.2.2:5000/blinds/meeting/end")
-          .then(function() {
-            console.log("ok");
-          })
-          .catch(function() {
-            console.log("error");
+          .then(() => {})
+          .catch(error => {
+            console.error(error);
           });
       }
     }
@@ -121,7 +99,7 @@ export default function() {
     <Router>
       <div className={styles.container}>
         <div className={styles.motioncharts}>
-        <DashboardElementHeader title="Motion charts" info={score}/>
+          <DashboardElementHeader title="Motion charts" info={score} />
           <ActivityGraph score={score} globalTrend={false} />
         </div>
 
