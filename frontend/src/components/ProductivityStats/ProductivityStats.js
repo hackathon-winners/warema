@@ -10,7 +10,7 @@ import iconMeetingInactive from "../../assets/svg/icon-meeting-inactive.svg";
 export default function({ index, currentState, activityIndex }) {
   const stateActive = (meetingname, icon) => (
     <Fragment>
-      <img src={icon} />
+      <img src={icon} alt={meetingname} />
       <div className={styles.label}>
         <h4>Current Meeting Type:</h4>
         <p>{meetingname}</p>
