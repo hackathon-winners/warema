@@ -41,7 +41,6 @@ export default function({index}) {
     });
 
     useEffect(()=>{
-        console.log(indexPercentage);
         setData(prev => {
             prev.datasets[0].data = [indexPercentage, 100-indexPercentage];
             return prev;

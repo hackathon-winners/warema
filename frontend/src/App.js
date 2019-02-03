@@ -153,7 +153,7 @@ export default function() {
         </div>
 
         <div className={styles.activitylog}>
-          <DashboardElementHeader title="Activity log" info="12:43" />
+          <DashboardElementHeader title="Activity log" />
           <ActivityLog messages={messages} />
         </div>
       </div>

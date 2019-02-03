@@ -44,8 +44,8 @@ export default function({ index, currentState, activityIndex }) {
         </div>
       </div>
       <div className={styles.trends}>
-        <DashboardElementHeader title="Trends" />
-        <ActivityGraph score={activityIndex} />
+        <DashboardElementHeader title="Productivity trends" />
+        <ActivityGraph score={activityIndex} globalTrend={true} />
       </div>
     </div>
   );
