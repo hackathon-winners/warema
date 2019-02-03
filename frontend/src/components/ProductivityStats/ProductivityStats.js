@@ -5,6 +5,7 @@ import ActivityGraph from "../ActivityGraph/ActivityGraph";
 import IndexGraph from "./IndexGraph/IndexGraph";
 import iconMeetingEngaged from "../../assets/svg/icon-meeting-engaged.svg";
 import iconMeetingFormal from "../../assets/svg/icon-meeting-formal.svg";
+import iconMeetingStarted from "../../assets/svg/icon-meeting-started.svg";
 import iconMeetingInactive from "../../assets/svg/icon-meeting-inactive.svg";
 
 export default function({ index, currentState, activityIndex }) {
@@ -36,7 +37,7 @@ export default function({ index, currentState, activityIndex }) {
           {currentState === "quiet" &&
             stateActive("No meeting active", iconMeetingInactive)}
           {currentState === "started" &&
-            stateActive("Meeting started", iconMeetingFormal)}
+            stateActive("Meeting started", iconMeetingStarted)}
           {currentState === "normal" &&
             stateActive("Formal Meeting", iconMeetingFormal)}
           {currentState === "active" &&
