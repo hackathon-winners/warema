@@ -72,7 +72,7 @@ export default function() {
     }
     // activity index steps
     if (overallScore <= 50000) {
-        setActivityIndex(parseFloat(overallScore/4000).toFixed(2));
+        setActivityIndex(parseFloat(overallScore/6000).toFixed(2));
     }
     if (overallScore > 50000) {
         setActivityIndex(parseFloat(8 + Math.random(),).toFixed(2));
@@ -89,7 +89,7 @@ export default function() {
 
         <div className={styles.videostream}>
           <DashboardElementHeader title="Video stream" info="live" />
-          <video ref={video} autoPlay />
+          <div className={styles.videoContainer}><video ref={video} autoPlay /></div>
         </div>
 
         <div className={styles.motionstream}>
@@ -98,16 +98,10 @@ export default function() {
         </div>
 
         <div className={styles.productivity}>
-          <ProductivityStats index={activityIndex} currentState={currentState}/>
+          <ProductivityStats index={activityIndex} currentState={currentState} activityIndex={activityIndex}/>
         </div>
 
-        <div className={styles.participants}>
-          <h2>
-            Participants<span className={styles.focus}>6</span>
-          </h2>
-          {currentState === "quiet" && <p>Currently no Meeting</p>}
-          {currentState === "normal" && <p>Formal Meeting</p>}
-          {currentState === "active" && <p>Engaged Meeting</p>}
+        <div className={styles.facedetection}>
         </div>
 
         <div className={styles.timeschedule}>
@@ -118,7 +112,7 @@ export default function() {
         <div className={styles.activitylog}>
         <DashboardElementHeader title="Activity log" info="12:43"/>
         <ActivityLog messages={messages} />
-        
+
         </div>
       </div>
     </Router>

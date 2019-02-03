@@ -1,13 +1,14 @@
 import React, {Fragment} from "react";
 import styles from "./ProductivityStats.module.scss";
 import DashboardElementHeader from "../DashboardElementHeader/DashboardElementHeader";
+import ActivityGraph from "../ActivityGraph/ActivityGraph";
 import IndexGraph from "./IndexGraph/IndexGraph";
 import iconMeetingEngaged from '../../assets/svg/icon-meeting-engaged.svg';
 import iconMeetingFormal from '../../assets/svg/icon-meeting-formal.svg';
 import iconMeetingInactive from '../../assets/svg/icon-meeting-inactive.svg';
 
 
-export default function({index, currentState}) {
+export default function({index, currentState, activityIndex}) {
 
 
   const stateActive = (meetingname, icon) => (
@@ -35,13 +36,16 @@ export default function({index, currentState}) {
 
         </div>
 
-        <div className={styles.side}>
+        <div className={styles.info}>
           <div className={styles.iconStat} id="meeting-type">
             {currentState === "quiet" && stateActive("No meeting active", iconMeetingInactive)}
             {currentState === "normal" && stateActive("Formal Meeting", iconMeetingFormal)}
             {currentState === "active" && stateActive("Engaged Meeting", iconMeetingEngaged)}
           </div>
+        </div>
+        <div className={styles.trends}>
           <DashboardElementHeader title="Trends"/>
+          <ActivityGraph score={activityIndex} />
         </div>
         
     </div>

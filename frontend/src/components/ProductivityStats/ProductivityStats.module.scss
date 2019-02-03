@@ -6,10 +6,11 @@
     grid-column-gap: 18px;
     grid-row-gap: 18px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: min-content auto;
+    grid-template-rows: min-content auto min-content;
     grid-template-areas:
         "title title"
-        "main side";
+        "main info"
+        "main trends";
 
     @each $div in "main", "title", "info", "trends" {
         .#{$div} {
