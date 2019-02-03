@@ -65,7 +65,7 @@ html, body {
     .productivity {
         grid-area: main;
     }
-    .participants {
+    .facedetection {
         grid-area: component4;
     }
     .timeschedule {
@@ -74,4 +74,13 @@ html, body {
     .activitylog {
         grid-area: component6;
     }
+
+    .videoContainer {
+        overflow: hidden;
+        max-height: 200px;
+        video {
+            object-fit: cover;        
+        }
+    }
+    
 }

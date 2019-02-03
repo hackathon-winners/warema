@@ -2,6 +2,8 @@
   
   canvas {
     image-rendering: pixelated;
+    max-height: 100%;
+    object-fit: cover;
   }
 
   .hide {

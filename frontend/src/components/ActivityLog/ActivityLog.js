@@ -8,9 +8,7 @@ export default function({ messages }) {
   return (
     <ul>
       {messages.map(message => (
-        <li>
-          <span>{message.time}</span> {message.text}
-        </li>
+        <li>{message}</li>
       ))}
     </ul>
   );
