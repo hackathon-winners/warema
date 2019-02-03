@@ -4,7 +4,8 @@ import { Doughnut, defaults } from "react-chartjs-2";
 
 defaults.global.defaultFontColor='#3F93C6';
 export default function({index}) {
-    var indexPercentage = index*10;
+    var indexPercentage = parseFloat(index) * 10;
+    
     const options = {
         animation: false,
         legend: {
@@ -21,12 +22,11 @@ export default function({index}) {
     const [data, setData] = useState({
         datasets: [{
             data: [
-                indexPercentage,
-                100-indexPercentage
+                0,100
             ],
             borderColor : 'transparent',
             backgroundColor: [
-            "#3F93C6",
+            "#8DD4FF",
             "#122F41",
             ],
             label: 'Dataset 1'
@@ -39,9 +39,18 @@ export default function({index}) {
             'Blue'
         ]
     });
+
+    useEffect(()=>{
+        console.log(indexPercentage);
+        setData(prev => {
+            prev.datasets[0].data = [indexPercentage, 100-indexPercentage];
+            return prev;
+        });
+    }, [index]);
+
     return (
         <div className={styles.IndexGraph}>
-            <Doughnut data={data} options={options} />
+            <Doughnut data={data} options={options}  redraw={true} />
             <div className={styles.label}>{index}</div>
         </div>
     );

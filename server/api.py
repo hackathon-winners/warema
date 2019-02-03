@@ -2,12 +2,16 @@ from flask import Flask
 import time
 
 import sys
-sys.path.insert(0, '../')
+sys.path.insert(0, '/home/pi/be5/src/warema')
 # custom Warema API
 from warema_python_api.warema import  WaremaBlind
 
 app = Flask(__name__)
 warema = WaremaBlind()
+
+@app.route('/', methods=['GET'])
+def init():
+    return 'works'
 
 @app.route('/blinds/init', methods=['GET'])
 def blind_init():
@@ -79,24 +83,32 @@ def smoke():
         time.sleep(0.250)
         warema.set_tilt(-.250)
         time.sleep(0.250)
+
         warema.set_tilt(.500)
-        time.sleep(0.200)
-        warema.set_tilt(-.250)
-        time.sleep(0.200)
-        warema.set_tilt(.250)
-        time.sleep(0.150)
-        warema.set_tilt(-.250)
+        time.sleep(0.250)
+
+        warema.set_tilt(-.200)
+        time.sleep(0.30)
+        warema.set_tilt(.200)
+        time.sleep(0.30)
+
+        warema.set_tilt(-.150)
+        time.sleep(0.20)
         warema.set_tilt(.500)
         time.sleep(0.500)
+
         warema.set_tilt(-.250)
-        time.sleep(0.250)
-        warema.set_tilt(.250)
-        time.sleep(0.250)
-        warema.set_tilt(-.500)
         time.sleep(0.30)
-        warema.set_tilt(.350)
-        warema.set_tilt(-.750)
-        time.sleep(1)
+        warema.set_tilt(.250)
+        time.sleep(0.30)
+
+        warema.set_tilt(-.500)
+        time.sleep(0.250)
+
+        warema.set_tilt(.150)
+        time.sleep(0.2)
+        warema.set_tilt(-.500)
+        time.sleep(1.8)
     return 'SMOKE'
 
 @app.route('/music/starwars', methods=['GET'])
@@ -153,3 +165,6 @@ def starwars():
     warema.set_tilt(-.6)
 
     return 'STAR WARS '
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)

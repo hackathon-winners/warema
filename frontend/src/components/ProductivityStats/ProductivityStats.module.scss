@@ -6,7 +6,7 @@
     grid-column-gap: 18px;
     grid-row-gap: 18px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: min-content auto min-content;
     grid-template-areas:
         "title title"
         "main info"
@@ -18,10 +18,10 @@
         }
     }
     .indexStat {
-        width: 80%;
+        width: 100%;
         text-align:center;
         p {
-            font-size: 18px;
+            font-size: 22px;
         }
     }    
     .iconStat {

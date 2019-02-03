@@ -2,7 +2,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #3f93c6;
+        fill: #8dd4ff;
       }
 
       .cls-2 {
@@ -11,7 +11,7 @@
     </style>
   </defs>
   <g id="Group_26" data-name="Group 26" transform="translate(-270 -8)">
-    <g id="Group_21" data-name="Group 21" transform="translate(6)">
+    <g id="Group_21" data-name="Group 21" transform="translate(6 -8)">
       <g id="Group_19" data-name="Group 19" transform="translate(-1226 241)">
         <ellipse id="Ellipse_10" data-name="Ellipse 10" class="cls-1" cx="2.285" cy="2.285" rx="2.285" ry="2.285" transform="translate(1535.388 -205.717)"/>
         <ellipse id="Ellipse_11" data-name="Ellipse 11" class="cls-1" cx="2.285" cy="2.285" rx="2.285" ry="2.285" transform="translate(1542.816 -205.717)"/>
