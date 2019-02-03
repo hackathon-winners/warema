@@ -7,5 +7,5 @@ Tensorflow backend
 Keras
 OpenCV
 
-We are using yolo alogorithms to detect face region in an image and then we are using Pre trained- Deep convolutional neural networks to classify whether particular person is man or woman and than we are classifying its emotions(happy,sad,neutral).
+We are using yolo alogorithms to detect multiple faces in an image and then we are using Pre trained- Deep convolutional neural networks to classify whether particular person in the region is man or woman and than we are classifying its emotions(happy,sad,neutral,surprise).
 
